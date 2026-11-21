@@ -413,53 +413,82 @@
         </div>
         <!-- End Clients -->
 
-        <!-- News -->
-        <div class="container g-padding-y-80--xs g-padding-y-125--sm">
-            <div class="g-text-center--xs g-margin-b-80--xs">
-                <p class="text-uppercase g-font-size-14--xs g-font-weight--700 g-color--primary g-letter-spacing--2 g-margin-b-25--xs">News</p>
-                <h2 class="g-font-size-32--xs g-font-size-36--md">Latest News</h2>
-            </div>
-            <div class="row">
+<!-- News -->
+<div class="container g-padding-y-80--xs g-padding-y-125--sm">
+    <div class="g-text-center--xs g-margin-b-80--xs">
+        <p class="text-uppercase g-font-size-14--xs g-font-weight--700 g-color--primary g-letter-spacing--2 g-margin-b-25--xs">News</p>
+        <h2 class="g-font-size-32--xs g-font-size-36--md">Latest News</h2>
+    </div>
 
-                <div class="col-sm-4 g-margin-b-30--xs g-margin-b-0--md">
-                    <!-- News -->
-                    <article>
-                        <img class="img-responsive" src="img/news/interior_sk_14_out.png" alt="Image">
-                        <div class="g-bg-color--white g-box-shadow__dark-lightest-v2 g-text-center--xs g-padding-x-40--xs g-padding-y-40--xs">
-                            <p class="text-uppercase g-font-size-14--xs g-font-weight--700 g-color--primary g-letter-spacing--2">News</p>
-                            <h3 class="g-font-size-22--xs g-letter-spacing--1"><a href="https://aipath.jp/" target="_blank">AI Image Generation App : AI Path</a></h3>
-                            <p>We have released AI Path, which enables users to transform any sketch or image - simply upload your line art or image, and apply your favorite design styles.  </p>
-                        </div>
-                    </article>
-                    <!-- End News -->
+    <div class="row news-grid">
+
+        <div class="col-sm-6 col-md-4">
+            <article class="news-card">
+                <div class="news-card__media">
+                    <img src="img/news/interior_sk_14_out.png" alt="AI Path generated interior image">
                 </div>
-                <div class="col-sm-4 g-margin-b-30--xs g-margin-b-0--md">
-                    <!-- News -->
-                    <article>
-                        <img class="img-responsive" src="img/news/foundx.png" alt="Image">
-                        <div class="g-bg-color--white g-box-shadow__dark-lightest-v2 g-text-center--xs g-padding-x-40--xs g-padding-y-40--xs">
-                            <p class="text-uppercase g-font-size-14--xs g-font-weight--700 g-color--primary g-letter-spacing--2">Report</p>
-                            <h3 class="g-font-size-22--xs g-letter-spacing--1"><a href="#">FOUND X in U Tokyo</a></h3>
-                            <p>We applied to FOUND X in U Tokyo</p>
-                        </div>
-                    </article>
-                    <!-- End News -->
+                <div class="news-card__body">
+                    <p class="news-card__label text-uppercase g-font-size-14--xs g-font-weight--700 g-color--primary g-letter-spacing--2">News</p>
+                    <h3 class="news-card__title g-font-size-22--xs g-letter-spacing--1">
+                        <a href="https://aipath.jp/" target="_blank" rel="noopener">AI Image Generation App : AI Path</a>
+                    </h3>
+                    <p class="news-card__text">We have released AI Path, which enables users to transform any sketch or image - simply upload your line art or image, and apply your favorite design styles.</p>
+                    <time class="news-card__date" datetime="2026-01-01">2026.01.01</time>
                 </div>
-                <div class="col-sm-4">
-                    <!-- News -->
-                    <article>
-                        <img class="img-responsive" src="img/news/registration.jpg" alt="Image">
-                        <div class="g-bg-color--white g-box-shadow__dark-lightest-v2 g-text-center--xs g-padding-x-40--xs g-padding-y-40--xs">
-                            <p class="text-uppercase g-font-size-14--xs g-font-weight--700 g-color--primary g-letter-spacing--2">News</p>
-                            <h3 class="g-font-size-22--xs g-letter-spacing--1"><a href="#">Corporate registration </a></h3>
-                            <p>Corporate registration in Japan, Date : October 9th 2020</p>
-                        </div>
-                    </article>
-                    <!-- End News -->
-                </div>
-            </div>
+            </article>
         </div>
-        <!-- End News -->
+
+        <div class="col-sm-6 col-md-4">
+            <article class="news-card">
+                <div class="news-card__media news-card__media--logo">
+                    <img src="img/news/foundx.png" alt="FoundX logo">
+                </div>
+                <div class="news-card__body">
+                    <p class="news-card__label text-uppercase g-font-size-14--xs g-font-weight--700 g-color--primary g-letter-spacing--2">Report</p>
+                    <h3 class="news-card__title g-font-size-22--xs g-letter-spacing--1">
+                        <a href="#">FoundX in UTokyo</a>
+                    </h3>
+                    <p class="news-card__text">We applied to FoundX in UTokyo.</p>
+                    <time class="news-card__date" datetime="2020-01-01">2020.01.01</time>
+                </div>
+            </article>
+        </div>
+
+        <div class="col-sm-6 col-md-4">
+            <article class="news-card">
+                <div class="news-card__media">
+                    <img src="img/news/registration.jpg" alt="Signing a document">
+                </div>
+                <div class="news-card__body">
+                    <p class="news-card__label text-uppercase g-font-size-14--xs g-font-weight--700 g-color--primary g-letter-spacing--2">News</p>
+                    <h3 class="news-card__title g-font-size-22--xs g-letter-spacing--1">
+                        <a href="#">Corporate Registration</a>
+                    </h3>
+                    <p class="news-card__text">Corporate registration in Japan.</p>
+                    <time class="news-card__date" datetime="2020-10-09">2020.10.09</time>
+                </div>
+            </article>
+        </div>
+
+        <!-- ▼ 新しい記事を追加するときは、この塊をコピーして先頭に追加 ▼
+        <div class="col-sm-6 col-md-4">
+            <article class="news-card">
+                <div class="news-card__media">  ← ロゴ画像なら news-card__media--logo を追加
+                    <img src="img/news/xxx.jpg" alt="">
+                </div>
+                <div class="news-card__body">
+                    <p class="news-card__label text-uppercase g-font-size-14--xs g-font-weight--700 g-color--primary g-letter-spacing--2">News</p>
+                    <h3 class="news-card__title g-font-size-22--xs g-letter-spacing--1"><a href="#">Title</a></h3>
+                    <p class="news-card__text">Description</p>
+                    <time class="news-card__date" datetime="YYYY-MM-DD">YYYY.MM.DD</time>
+                </div>
+            </article>
+        </div>
+        -->
+
+    </div>
+</div>
+<!-- End News -->
 
          <!-- Feedback Form -->
          <section id="contact">

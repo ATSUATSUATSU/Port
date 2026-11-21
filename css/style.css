@@ -2401,57 +2401,72 @@ fieldset[disabled] .s-btn {
 }
 
 /*----------------------------------
-  News Card
+  News Slider (横スクロール)
 ------------------------------------*/
-/* Grid: 行ごとにカードの高さを揃える */
-.news-grid {
+.news-slider {
+  position: relative;
+}
+
+/* Track: カードを横一列に並べ、横スクロールさせる */
+.news-slider__track {
   display: flex;
-  flex-wrap: wrap;
+  align-items: stretch;           /* 全カードを同じ高さに */
+  gap: 1.875rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;          /* Firefox */
+  padding: 1.25rem .75rem 2.5rem; /* 影が切れないための余白 */
+  margin: -1.25rem -.75rem 0;
+  scroll-padding-left: .75rem;
 }
 
-/* Bootstrap 3 の clearfix 疑似要素が flex アイテム化して隙間を作るのを防ぐ */
-.news-grid:before,
-.news-grid:after {
-  display: none;
+.news-slider__track::-webkit-scrollbar {
+  display: none;                  /* Chrome / Safari */
 }
 
-.news-grid > [class*="col-"] {
+/* Card: 幅は画面サイズで固定(画像サイズ・文字数に左右されない) */
+.news-card {
+  flex: 0 0 85%;                  /* スマホ:次のカードが少し覗く */
+  scroll-snap-align: start;
   display: flex;
-  margin-bottom: 1.875rem;
+  flex-direction: column;
+  min-width: 0;
+  background: #fff;
+  box-shadow: 0 0.3125rem 1.25rem 0 rgba(34, 35, 36, 0.07);
+  transition-duration: 300ms;
+  transition-property: box-shadow, transform;
+  transition-timing-function: cubic-bezier(0.7, 1, 0.7, 1);
 }
 
-/* スマホ幅(Bootstrap sm 未満)では1列・全幅にする */
-@media (max-width: 47.9em) {
-  .news-grid > [class*="col-"] {
-    width: 100%;
+@media (min-width: 48em) {
+  .news-card {
+    flex-basis: calc((100% - 1.875rem) / 2);     /* タブレット:2枚 */
   }
 }
 
-/* Card */
-.news-card {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  background: #fff;
-  box-shadow: 0 0.3125rem 1.25rem 0 rgba(34, 35, 36, 0.06);
-  transition-duration: 300ms;
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.7, 1, 0.7, 1);
+@media (min-width: 62em) {
+  .news-card {
+    flex-basis: calc((100% - 1.875rem * 2) / 3); /* PC:3枚 */
+  }
 }
 
 .news-card:hover {
   -webkit-transform: translate3d(0, -0.1875rem, 0);
   transform: translate3d(0, -0.1875rem, 0);
-  box-shadow: 0 0.625rem 1.875rem 0 rgba(34, 35, 36, 0.1);
+  box-shadow: 0 0.625rem 1.875rem 0 rgba(34, 35, 36, 0.12);
 }
 
-/* Media: 全カード 4:3 の枠に固定(古いSafariでも効く padding 方式) */
+/* Media: どんな画像でも 4:3 の枠に収める */
 .news-card__media {
   position: relative;
   width: 100%;
   padding-top: 75%;
   overflow: hidden;
   background: #fff;
+  flex-shrink: 0;
 }
 
 .news-card__media img {
@@ -2464,10 +2479,10 @@ fieldset[disabled] .s-btn {
   display: block;
 }
 
-/* ロゴ画像用:トリミングせず中央に収める */
-.news-card__media--logo img {
+/* ロゴや文字入り画像:切らずに全体を表示 */
+.news-card__media--contain img {
   object-fit: contain;
-  padding: 15% 20%;
+  padding: 12% 18%;
 }
 
 /* Body */
@@ -2476,16 +2491,24 @@ fieldset[disabled] .s-btn {
   display: flex;
   flex-direction: column;
   text-align: center;
-  padding: 2rem 2rem 1.75rem;
+  padding: 1.875rem 1.75rem 1.75rem;
 }
 
 .news-card__label {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #232a4f;
+  text-transform: uppercase;
+  letter-spacing: .125rem;
   margin-bottom: .625rem;
 }
 
+/* タイトル:常に2行分の高さ(1行でも2行でも本文の開始位置が揃う) */
 .news-card__title {
+  font-size: 1.25rem;
+  letter-spacing: .03rem;
   line-height: 1.4;
-  min-height: 2.8em; /* タイトル2行分を確保 */
+  height: 2.8em;
   margin: 0 0 .75rem;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -2498,21 +2521,69 @@ fieldset[disabled] .s-btn {
   text-decoration: none;
 }
 
+/* 本文:最大3行 */
 .news-card__text {
   margin-bottom: 0;
   display: -webkit-box;
-  -webkit-line-clamp: 3; /* 本文は3行で省略 */
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-/* 日付は常にカード最下部 */
+/* 日付:常にカード最下部 */
 .news-card__date {
   display: block;
   margin-top: auto;
-  padding-top: 1rem;
+  padding-top: 1.25rem;
   font-size: 0.8125rem;
   font-family: Montserrat, sans-serif;
   color: #656565;
   letter-spacing: .0625rem;
+}
+
+/* Arrows */
+.news-slider__nav {
+  display: flex;
+  justify-content: center;
+  gap: .75rem;
+  margin-top: .5rem;
+}
+
+.news-slider__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  color: #232a4f;
+  background: transparent;
+  border: 0.0625rem solid #232a4f;
+  border-radius: 50%;
+  cursor: pointer;
+  transition-duration: 300ms;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.7, 1, 0.7, 1);
+}
+
+.news-slider__arrow:hover {
+  color: #fff;
+  background: #232a4f;
+}
+
+.news-slider__arrow:disabled {
+  opacity: .25;
+  cursor: default;
+  color: #232a4f;
+  background: transparent;
+}
+
+.news-slider__arrow svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* 全カードが画面に収まるときは矢印を隠す */
+.news-slider.-no-scroll .news-slider__nav {
+  display: none;
 }

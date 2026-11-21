@@ -2399,3 +2399,120 @@ fieldset[disabled] .s-btn {
 .s-swiper__pagination-v1--dark .swiper-pagination-bullet-active {
   background: #232a4f;
 }
+
+/*----------------------------------
+  News Card
+------------------------------------*/
+/* Grid: 行ごとにカードの高さを揃える */
+.news-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Bootstrap 3 の clearfix 疑似要素が flex アイテム化して隙間を作るのを防ぐ */
+.news-grid:before,
+.news-grid:after {
+  display: none;
+}
+
+.news-grid > [class*="col-"] {
+  display: flex;
+  margin-bottom: 1.875rem;
+}
+
+/* スマホ幅(Bootstrap sm 未満)では1列・全幅にする */
+@media (max-width: 47.9em) {
+  .news-grid > [class*="col-"] {
+    width: 100%;
+  }
+}
+
+/* Card */
+.news-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 0.3125rem 1.25rem 0 rgba(34, 35, 36, 0.06);
+  transition-duration: 300ms;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.7, 1, 0.7, 1);
+}
+
+.news-card:hover {
+  -webkit-transform: translate3d(0, -0.1875rem, 0);
+  transform: translate3d(0, -0.1875rem, 0);
+  box-shadow: 0 0.625rem 1.875rem 0 rgba(34, 35, 36, 0.1);
+}
+
+/* Media: 全カード 4:3 の枠に固定(古いSafariでも効く padding 方式) */
+.news-card__media {
+  position: relative;
+  width: 100%;
+  padding-top: 75%;
+  overflow: hidden;
+  background: #fff;
+}
+
+.news-card__media img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ロゴ画像用:トリミングせず中央に収める */
+.news-card__media--logo img {
+  object-fit: contain;
+  padding: 15% 20%;
+}
+
+/* Body */
+.news-card__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 2rem 2rem 1.75rem;
+}
+
+.news-card__label {
+  margin-bottom: .625rem;
+}
+
+.news-card__title {
+  line-height: 1.4;
+  min-height: 2.8em; /* タイトル2行分を確保 */
+  margin: 0 0 .75rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.news-card__title a:hover,
+.news-card__title a:focus {
+  text-decoration: none;
+}
+
+.news-card__text {
+  margin-bottom: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* 本文は3行で省略 */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 日付は常にカード最下部 */
+.news-card__date {
+  display: block;
+  margin-top: auto;
+  padding-top: 1rem;
+  font-size: 0.8125rem;
+  font-family: Montserrat, sans-serif;
+  color: #656565;
+  letter-spacing: .0625rem;
+}
